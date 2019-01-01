@@ -28,16 +28,12 @@ export default class From extends Component {
         this.setState({ text: newText })
     }
 
-    handleKeyDown = (e) => {
-        if(e.key === 'Enter') {
+    onButtonClick = () => {
+        if(this.state.text.length !== 0) {
             this.props.submit(this.state.text)
-            this.setState=({text: ""})
+            this.setState({ text: "" })
+            this.handleClose()
         }
-    }
-
-    handleSubmit = () => {
-        this.props.submit(this.state.text)
-        this.setState=({text: ""})
     }
 
 
@@ -53,25 +49,27 @@ export default class From extends Component {
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}
+                    fullWidth 
                 >
                     <DialogTitle>Todo List</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
                             Add anything you need to do
                         </DialogContentText>
-                        <TextField
-                            label="Todo.."
-                            fullWidth
-                            value={text}
-                            onChange={this.handleChange}
-                            onKeyDown={this.handleKeyDown}
-                        />
+                        <div style={{paddingTop: 20}}>
+                            <TextField
+                                label="Todo.."
+                                fullWidth
+                                value={text}
+                                onChange={this.handleChange}
+                            />
+                        </div>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={this.handleSubmit} color="primary">
+                        <Button onClick={this.onButtonClick} color="primary">
                             Add
                         </Button>
                     </DialogActions>

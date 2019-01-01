@@ -90,7 +90,7 @@ class App extends Component {
       },
       update: ( store, { data: { createTodo } }) => {
         const data = store.readQuery({ query: TodosQuery })
-        data.todos = data.todos.unshift(createTodo)
+        data.todos.unshift(createTodo)
         store.writeQuery({ query: TodosQuery, data })
       }
     })
